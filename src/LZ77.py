@@ -104,22 +104,22 @@ class LZ77Compressor:
 			raise
 
 		while len(data) >= 9:
-			#print len(data)
+
 			flag = data.pop(0)
-			#print flag
+
 			if not flag:
 				byte = data[0:8].tobytes()
-				#print "direct to out: ", byte
+
 				output_buffer.append(byte)
 				del data[0:8]
 			else:
 				byte1 = ord(data[0:8].tobytes())
 				byte2 = ord(data[8:16].tobytes())
-				#print data[0:16]
+
 				del data[0:16]
 				distance = (byte1 << 4) | (byte2 >> 4)
 				length = (byte2 & 0xf)
-				#print 'distance: %i, length: %i' % (distance, length)
+
 				for i in range(length):
 					output_buffer.append(output_buffer[-distance])
 		out_data =  ''.join(output_buffer)
