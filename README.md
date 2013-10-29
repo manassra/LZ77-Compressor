@@ -11,7 +11,7 @@ First, you will need to clone the repository:
   git clone git@github.com:manassra/LZ77-Compressor.git
 ```
 
-The `LZ77Compressor` uses the [bitarray](https://pypi.python.org/pypi/bitarray/) as the only dependency. 
+The `LZ77Compressor` uses the [bitarray](https://pypi.python.org/pypi/bitarray/) python module as the only dependency. 
 
 This dependency can be install by using [pip](https://pypi.python.org/pypi/pip), the python package manager, as follows: 
 
