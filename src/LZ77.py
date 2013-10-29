@@ -8,7 +8,7 @@ class LZ77Compressor:
 	MAX_WINDOW_SIZE = 400
 
 	def __init__(self, window_size=20):
-		self.window_size = min(window_size, MAX_WINDOW_SIZE) 
+		self.window_size = min(window_size, self.MAX_WINDOW_SIZE) 
 		self.lookahead_buffer_size = 15 # length of match is at most 4 bits
 
 	def compress(self, input_file_path, output_file_path=None, verbose=False):
@@ -42,7 +42,7 @@ class LZ77Compressor:
 		while i < len(data):
 			#print i
 
-			match = findLongestMatch(data, i)
+			match = self.findLongestMatch(data, i)
 
 			if match: 
 				# Add 1 bit flag, followed by 12 bit for distance, and 4 bit for the length
