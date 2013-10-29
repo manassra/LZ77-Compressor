@@ -64,7 +64,7 @@ the folder `/examples` has the following files:
 
 `input.txt`, a file containing some text (size: <i>231 bytes</i>)
 
-`compressed.txt`, a compressed output of it using this algorithm with window size of 100 (size: <i>71 bytes</i>, 30% of original size)
+`compressed_window_100.txt`, a compressed output of it using this algorithm with window size of 100 (size: <i>71 bytes</i>, 30% of original size)
 
 `decompressed.txt`, the decompressed file back to its original form (same as `input.txt`, size: <i>231 bytes</i>)
 
