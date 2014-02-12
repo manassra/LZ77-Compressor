@@ -8,7 +8,7 @@ The compressor follows the implementation of the standard LZ77 compression algor
 ## Setup and Dependencies
 First, you will need to clone the repository: 
 ```
-  git clone git@github.com:manassra/LZ77-Compressor.git
+  git clone https://github.com/manassra/LZ77-Compressor.git
 ```
 
 The `LZ77Compressor` uses the [bitarray](https://pypi.python.org/pypi/bitarray/) python module as the only dependency. 
