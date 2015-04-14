@@ -55,7 +55,7 @@ Example: if a file has `"hello hello"`, verbose will print the following descrip
   compressor.decompress(input_file_path, output_file_path)
   
   # or assign decompressed data into a variable 
-  decompressed_data = compressor.compress(input_file_path)
+  decompressed_data = compressor.decompress(input_file_path)
 ```
 
 ## Examples
