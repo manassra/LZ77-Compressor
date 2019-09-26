@@ -36,11 +36,11 @@ class LZ77Compressor:
 			with open(input_file_path, 'rb') as input_file:
 				data = input_file.read()
 		except IOError:
-			print 'Could not open input file ...'
+			print('Could not open input file ...')
 			raise
 
 		while i < len(data):
-			#print i
+			#print(i)
 
 			match = self.findLongestMatch(data, i)
 
@@ -50,21 +50,21 @@ class LZ77Compressor:
 				(bestMatchDistance, bestMatchLength) = match
 
 				output_buffer.append(True)
-				output_buffer.frombytes(chr(bestMatchDistance >> 4))
-				output_buffer.frombytes(chr(((bestMatchDistance & 0xf) << 4) | bestMatchLength))
+				output_buffer.frombytes(bytes([bestMatchDistance >> 4]))
+				output_buffer.frombytes(bytes([((bestMatchDistance & 0xf) << 4) | bestMatchLength]))
 
 				if verbose:
-					print "<1, %i, %i>" % (bestMatchDistance, bestMatchLength),
+                                        print("<1, %i, %i>" % (bestMatchDistance, bestMatchLength), end='')
 
 				i += bestMatchLength
 
 			else:
 				# No useful match was found. Add 0 bit flag, followed by 8 bit for the character
 				output_buffer.append(False)
-				output_buffer.frombytes(data[i])
+				output_buffer.frombytes(bytes([data[i]]))
 				
 				if verbose:
-					print "<0, %s>" % data[i],
+					print("<0, %s>" % data[i], end='')
 
 				i += 1
 
@@ -76,10 +76,10 @@ class LZ77Compressor:
 			try:
 				with open(output_file_path, 'wb') as output_file:
 					output_file.write(output_buffer.tobytes())
-					print "File was compressed successfully and saved to output path ..."
+					print("File was compressed successfully and saved to output path ...")
 					return None
 			except IOError:
-				print 'Could not write to output file path. Please check if the path is correct ...'
+				print('Could not write to output file path. Please check if the path is correct ...')
 				raise
 
 		# an output file path was not provided, return the compressed data
@@ -100,7 +100,7 @@ class LZ77Compressor:
 			with open(input_file_path, 'rb') as input_file:
 				data.fromfile(input_file)
 		except IOError:
-			print 'Could not open input file ...'
+			print('Could not open input file ...')
 			raise
 
 		while len(data) >= 9:
@@ -122,16 +122,16 @@ class LZ77Compressor:
 
 				for i in range(length):
 					output_buffer.append(output_buffer[-distance])
-		out_data =  ''.join(output_buffer)
+		out_data =  b''.join(output_buffer)
 
 		if output_file_path:
 			try:
 				with open(output_file_path, 'wb') as output_file:
 					output_file.write(out_data)
-					print 'File was decompressed successfully and saved to output path ...'
+					print('File was decompressed successfully and saved to output path ...')
 					return None 
 			except IOError:
-				print 'Could not write to output file path. Please check if the path is correct ...'
+				print('Could not write to output file path. Please check if the path is correct ...')
 				raise 
 		return out_data
 
@@ -156,7 +156,7 @@ class LZ77Compressor:
 
 			for i in range(start_index, current_position):
 
-				repetitions = len(substring) / (current_position - i)
+				repetitions = len(substring) // (current_position - i)
 
 				last = len(substring) % (current_position - i)
 
